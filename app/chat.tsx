@@ -8,7 +8,8 @@ import { Separator } from 'components/ui/separator';
 import { IconArrowUp } from '@tabler/icons-react';
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat();
   const button = useRef<HTMLButtonElement>(null);
   const disabled = !input.trim();
   return (
@@ -49,6 +50,7 @@ export default function Chat() {
             if (e.key === 'Enter' && !e.shiftKey && button.current && !disabled)
               button.current.click();
           }}
+          disabled={isLoading}
         />
         <Button
           ref={button}
